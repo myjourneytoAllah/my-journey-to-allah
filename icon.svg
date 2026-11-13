@@ -1,0 +1,9 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="100" fill="#315543"/>
+  <rect x="25" y="25" width="462" height="462" rx="85" fill="none" stroke="#d9c08c" stroke-width="8"/>
+  <circle cx="225" cy="230" r="120" fill="#f5f1e8"/>
+  <circle cx="280" cy="195" r="120" fill="#315543"/>
+  <path d="M365 105 L378 139 L412 152 L378 165 L365 199 L352 165 L318 152 L352 139 Z" fill="#d9c08c"/>
+  <text x="256" y="405" text-anchor="middle" font-family="Georgia,serif" font-size="35" fill="#f5f1e8">MY JOURNEY</text>
+</svg>
