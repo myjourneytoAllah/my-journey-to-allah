@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6efe8">
+<title>My Journey to Allah</title>
+<style>
+:root{--ink:#24352f;--muted:#718078;--cream:#f6efe8;--paper:#fffdf9;--green:#426b59;--sage:#e7eee8;--gold:#c49a58;--line:#e8e2d9}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:26px 20px 20px;background:linear-gradient(145deg,#e8eee7,#f8f0e8);border-bottom:1px solid var(--line)}
+.wrap{max-width:760px;margin:auto;padding:0 16px} .eyebrow{color:var(--green);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+h1{font:600 30px/1.15 Georgia,serif;margin:7px 0}h2{font:600 22px Georgia,serif;margin:0 0 12px}h3{font-size:16px;margin:0 0 6px}
+p{margin:5px 0;color:var(--muted)}.hero{padding:20px 0 4px}.hero .arabic{font:30px Georgia,serif;color:var(--green);margin:8px 0}
+nav{display:flex;gap:8px;overflow:auto;padding:12px 0;position:sticky;top:0;background:var(--cream);z-index:2}
+nav button,.btn{border:0;border-radius:999px;padding:10px 15px;background:#e7e5dc;color:var(--ink);font-weight:650;white-space:nowrap}
+nav button.active,.btn.primary{background:var(--green);color:white}
+main{padding:12px 0 40px}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 3px 14px #26392d08}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.muted{color:var(--muted);font-size:13px}
+.progress{height:9px;border-radius:9px;background:#e9e9e1;overflow:hidden;margin:10px 0}.progress span{display:block;height:100%;background:var(--green);width:0}
+.prayer{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.prayer:last-child{border:0}
+.check{accent-color:var(--green);width:21px;height:21px}.tag{font-size:12px;color:var(--green);background:var(--sage);padding:4px 9px;border-radius:20px}
+input[type=number],input[type=time],input[type=text]{padding:10px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);max-width:100%}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.btn{cursor:pointer}.btn.small{padding:7px 11px;font-size:13px}
+section[hidden]{display:none}.quote{font:20px Georgia,serif;color:var(--green)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{background:var(--sage);border-radius:14px;padding:13px}.stat strong{display:block;font:25px Georgia,serif}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(min-width:600px){h1{font-size:36px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="eyebrow">A gentle daily companion</div>
+ <h1>My Journey to Allah</h1>
+ <p>Pray • Learn • Grow</p>
+ <div class="hero"><div class="arabic" lang="ar" dir="rtl">وَاذْكُرُوا اللَّهَ كَثِيرًا</div><p>Remember Allah often.</p></div>
+</div></header>
+<div class="wrap">
+<nav aria-label="Main navigation">
+<button class="active" data-tab="home">Home</button><button data-tab="salah">Salah</button><button data-tab="qada">Qada</button><button data-tab="habits">Daily deeds</button><button data-tab="settings">Settings</button>
+</nav>
+<main>
+<section id="home">
+ <div class="card"><div class="row"><div><div class="eyebrow">Today</div><h2 id="today"></h2></div><span class="tag">Keep going, gently</span></div><div class="grid">
+ <div class="stat"><strong id="prayedCount">0/5</strong><span class="muted">Obligatory prayers</span></div>
+ <div class="stat"><strong id="habitCount">0</strong><span class="muted">Daily deeds checked</span></div>
+ <div class="stat"><strong id="qadaCount">0</strong><span class="muted">Qada completed</span></div>
+ <div class="stat"><strong id="streak">—</strong><span class="muted">Consistency journey</span></div>
+ </div></div>
+ <div class="card"><h2>Today's reminder</h2><div class="quote">“So remember Me; I will remember you.”</div><p>Qur'an 2:152 · Take one sincere step at a time.</p></div>
+ <div class="card"><h2>Prayer progress</h2><div class="progress"><span id="homeProgress"></span></div><p id="homeProgressText">Your daily Salah check-in will appear here.</p><button class="btn primary" onclick="showTab('salah')">Open prayer tracker</button></div>
+</section>
+<section id="salah" hidden>
+ <div class="card"><h2>Five daily prayers</h2><p>Mark each obligatory prayer after you have prayed it. The tracker resets each new day.</p><div id="prayerList"></div><div class="progress"><span id="salahProgress"></span></div><p id="salahText"></p></div>
+ <div class="card"><h2>Additional prayers</h2><p>These are voluntary or special prayers, not part of the five obligatory prayers.</p><div id="extraList"></div></div>
+</section>
+<section id="qada" hidden>
+ <div class="card"><h2>Qada Salah record</h2><p>Keep a private count of make-up obligatory prayers. This is a personal record, not a religious ruling about how to calculate what is owed.</p>
+ <div class="grid">
+ <label class="stat">Fajr<input type="number" min="0" id="qFajr" value="0"></label><label class="stat">Dhuhr<input type="number" min="0" id="qDhuhr" value="0"></label><label class="stat">Asr<input type="number" min="0" id="qAsr" value="0"></label><label class="stat">Maghrib<input type="number" min="0" id="qMaghrib" value="0"></label><label class="stat">Isha<input type="number" min="0" id="qIsha" value="0"></label>
+ </div><div class="actions"><button class="btn primary" onclick="saveQada()">Save remaining counts</button></div><p id="qadaSaved" class="muted"></p></div>
+ <div class="card"><h2>Record a make-up prayer</h2><div class="row"><select id="qadaType" aria-label="Prayer type"><option>Fajr</option><option>Dhuhr</option><option>Asr</option><option>Maghrib</option><option>Isha</option></select><button class="btn primary" onclick="completeQada()">Mark one completed</button></div><p id="qadaMessage" class="muted"></p></div>
+</section>
+<section id="habits" hidden>
+ <div class="card"><h2>Daily deeds</h2><p>Small consistent deeds matter. Tick what you complete today.</p><div id="habitList"></div></div>
+ <div class="card"><h2>Dhikr counter</h2><div class="row"><div><div class="quote" id="dhikrCount">0</div><p>SubhanAllah</p></div><button class="btn primary" onclick="addDhikr()">+1 dhikr</button><button class="btn small" onclick="resetDhikr()">Reset</button></div></div>
+</section>
+<section id="settings" hidden>
+ <div class="card"><h2>Prayer preferences</h2><p>Location: Maldives · Asr: Shafi'i · Reminder preference: 10 minutes before and at prayer time.</p><p><strong>Important:</strong> Exact local prayer times need a verified Maldives timetable for your island. This starter version does not invent prayer times or send alarms while closed.</p><label>Island / atoll<input type="text" id="island" placeholder="Enter your island"></label><div class="actions"><button class="btn primary" onclick="saveIsland()">Save location</button></div><p id="islandSaved" class="muted"></p></div>
+ <div class="card"><h2>Reminder setup</h2><p>Browser notifications can be enabled while the app is open or installed, subject to device and browser support. Reliable scheduled alerts when the app is closed need a later native Android implementation.</p><button class="btn primary" onclick="enableNotifications()">Enable notifications</button><p id="notifyStatus" class="muted"></p></div>
+</section>
+</main><footer>May Allah make your journey full of sincerity, patience and barakah. Ameen.</footer>
+</div>
+<script>
+const todayKey=()=>new Date().toLocaleDateString('en-CA');
+const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let day=todayKey();
+let prayers=read('mja-prayers-'+day,{});
+let extras=read('mja-extras-'+day,{});
+let habits=read('mja-habits-'+day,{});
+let qada=read('mja-qada',{Fajr:0,Dhuhr:0,Asr:0,Maghrib:0,Isha:0});
+let dhikr=read('mja-dhikr-'+day,0);
+document.getElementById('today').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
+const obligatory=['Fajr','Dhuhr','Asr','Maghrib','Isha'];
+const extra=['Fajr Sunnah','Dhuhr Sunnah','Asr Sunnah','Maghrib Sunnah','Isha Sunnah','Witr','Duha','Ishraq','Tahajjud','Awwabin','Qiyam-ul-Layl'];
+const daily=['Morning adhkar','Evening adhkar','Read Quran','Send salawat upon the Prophet ﷺ','Make istighfar','Be kind / give charity'];
+function renderChecks(id,items,obj,key,cls){document.getElementById(id).innerHTML=items.map((x,i)=>`<div class="prayer"><label for="${cls+i}">${x}</label><input class="check" id="${cls+i}" type="checkbox" ${obj[x]?'checked':''} onchange="toggleItem('${key}','${x.replace(/'/g,"\\'")}',this.checked)"></div>`).join('')}
+window.toggleItem=(key,x,v)=>{let obj=key==='p'?prayers:key==='e'?extras:habits;obj[x]=v;write('mja-'+(key==='p'?'prayers':key==='e'?'extras':'habits')+'-'+day,obj);render()};
+function render(){renderChecks('prayerList',obligatory,prayers,'p','p');renderChecks('extraList',extra,extras,'e','e');renderChecks('habitList',daily,habits,'h','h');let n=obligatory.filter(x=>prayers[x]).length;document.getElementById('prayedCount').textContent=n+'/5';document.getElementById('homeProgress').style.width=n*20+'%';document.getElementById('salahProgress').style.width=n*20+'%';document.getElementById('homeProgressText').textContent=n===5?'Alhamdulillah, all five recorded.':n+' of 5 obligatory prayers recorded.';document.getElementById('salahText').textContent=n+'/5 obligatory prayers recorded';document.getElementById('habitCount').textContent=Object.values(habits).filter(Boolean).length;document.getElementById('qadaCount').textContent=read('mja-qada-done',0);document.getElementById('dhikrCount').textContent=dhikr;obligatory.forEach((x,i)=>{let el=document.getElementById('p'+i);if(el)el.checked=!!prayers[x]});extra.forEach((x,i)=>{let el=document.getElementById('e'+i);if(el)el.checked=!!extras[x]});daily.forEach((x,i)=>{let el=document.getElementById('h'+i);if(el)el.checked=!!habits[x]});}
+function showTab(id){document.querySelectorAll('main section').forEach(s=>s.hidden=s.id!==id);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id))}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+function saveQada(){obligatory.forEach(x=>qada[x]=Math.max(0,Number(document.getElementById('q'+x).value)||0));write('mja-qada',qada);document.getElementById('qadaSaved').textContent='Your remaining counts have been saved on this device.'}
+function completeQada(){let x=document.getElementById('qadaType').value;if(qada[x]>0){qada[x]--;write('mja-qada',qada);document.getElementById('q'+x).value=qada[x];write('mja-qada-done',read('mja-qada-done',0)+1);document.getElementById('qadaMessage').textContent='Make-up prayer recorded. May Allah accept it.';render()}else document.getElementById('qadaMessage').textContent='There is no remaining count entered for '+x+'.'}
+function addDhikr(){dhikr++;write('mja-dhikr-'+day,dhikr);render()}function resetDhikr(){dhikr=0;write('mja-dhikr-'+day,dhikr);render()}
+function saveIsland(){let v=document.getElementById('island').value.trim();write('mja-island',v);document.getElementById('islandSaved').textContent=v?'Saved: '+v:'Please enter your island.'}
+function enableNotifications(){if(!('Notification'in window)){document.getElementById('notifyStatus').textContent='Notifications are not supported in this browser.';return}Notification.requestPermission().then(p=>document.getElementById('notifyStatus').textContent=p==='granted'?'Notifications permission enabled. Prayer schedules still need to be configured and tested.':'Permission not granted.')}
+document.getElementById('island').value=read('mja-island','');render();
+</script>
+</body></html>
