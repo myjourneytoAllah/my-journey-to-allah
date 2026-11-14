@@ -1,5 +1,5 @@
-
-const CACHE_NAME = "my-journey-to-allah-v2";
+const CACHE_NAME = "my-journey-to-allah-v3";
+const CACHE_PREFIX = "my-journey-to-allah-";
 
 const APP_FILES = [
   "./",
@@ -20,7 +20,8 @@ self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys()
       .then(keys => Promise.all(
-        keys.filter(key => key !== CACHE_NAME)
+        keys
+          .filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME)
           .map(key => caches.delete(key))
       ))
       .then(() => self.clients.claim())
@@ -28,20 +29,42 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
+  const request = event.request;
+  if (request.method !== "GET") return;
 
-  const url = new URL(event.request.url);
+  const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (event.request.mode === "navigate") {
+  if (request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request)
-        .catch(() => caches.match("./index.html"))
+      fetch(request)
+        .then(async response => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            const cache = await caches.open(CACHE_NAME);
+            await cache.put("./index.html", copy);
+          }
+          return response;
+        })
+        .catch(async () => {
+          const cachedPage = await caches.match("./index.html");
+          return cachedPage || Response.error();
+        })
     );
-  } else {
-    event.respondWith(
-      caches.match(event.request)
-        .then(cached => cached || fetch(event.request))
-    );
+    return;
   }
+
+  event.respondWith(
+    caches.match(request).then(async cached => {
+      if (cached) return cached;
+
+      const response = await fetch(request);
+      if (response && response.ok && response.type === "basic") {
+        const copy = response.clone();
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(request, copy);
+      }
+      return response;
+    })
+  );
 });
