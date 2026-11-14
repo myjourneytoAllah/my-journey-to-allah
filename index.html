@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f1e8">
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icon-192.png" type="image/png">
-<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <meta name="description" content="A gentle Islamic life companion for Quran reading, duas, prayer tracking and daily remembrance.">
 <title>My Journey to Allah</title>
 <style>
@@ -22,6 +22,90 @@
 
 /* Salah learning and Qibla compass */
 .qibla-layout{display:grid;grid-template-columns: minmax(170px,220px) 1fr;gap:18px;align-items:center;margin:16px 0}.compass{width:min(62vw,210px);aspect-ratio:1;border:8px solid var(--sage);border-radius:50%;margin:auto;position:relative;background:radial-gradient(circle,var(--paper) 0 57%,var(--sage) 58% 60%,var(--paper) 61%);box-shadow:inset 0 0 0 1px var(--line),0 5px 18px #24372f12}.compass:before{content:'N';position:absolute;top:7px;left:50%;transform:translateX(-50%);font-weight:800;color:var(--danger)}.compass:after{content:'S';position:absolute;bottom:7px;left:50%;transform:translateX(-50%);font-weight:800;color:var(--muted)}.compass-needle{position:absolute;left:50%;top:50%;width:4px;height:76px;transform:translate(-50%,-88%) rotate(0deg);transform-origin:50% 88%;border-radius:8px;background:linear-gradient(to top,var(--green) 0 50%,var(--danger) 50%);transition:transform .2s}.compass-center{position:absolute;left:50%;top:50%;width:14px;height:14px;transform:translate(-50%,-50%);border-radius:50%;background:var(--gold);border:3px solid var(--paper);z-index:2}.compass-label{text-align:center;font-weight:800;color:var(--green2);margin-top:7px}.salah-dua{border:1px solid var(--line);border-radius:15px;padding:15px;margin:10px 0;background:var(--paper)}.salah-dua h3{font-family:system-ui,sans-serif;font-size:16px;color:var(--green2)}.salah-dua .arabic{font-size:25px;margin:9px 0}.salah-dua p{margin:7px 0}.salah-dua .source{font-size:12px;color:var(--muted)}@media(max-width:520px){.qibla-layout{grid-template-columns:1fr}.compass{width:190px}}
+
+
+/* ===== My Journey to Allah · unified visual refresh (v2) ===== */
+:root{
+ --radius-card:22px;
+ --shadow:0 12px 34px rgba(36,55,47,.075);
+ --line:color-mix(in srgb,var(--line) 82%,transparent);
+}
+html{scroll-padding-top:88px}
+body{font-family: "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.005em;background:
+ radial-gradient(ellipse at 8% 0%,color-mix(in srgb,var(--sage) 72%,transparent),transparent 34rem),
+ var(--cream)}
+.wrap{max-width:1080px;padding-inline:clamp(16px,3vw,30px)}
+.top{position:relative;overflow:hidden;padding:clamp(26px,5vw,48px) 0 26px;background:linear-gradient(135deg,color-mix(in srgb,var(--sage) 92%,var(--paper)),var(--cream) 72%);border-bottom:1px solid var(--line)}
+.top:after{content:"۞";position:absolute;right:max(3vw,18px);top:-42px;font:220px/1 Georgia,serif;color:color-mix(in srgb,var(--gold) 10%,transparent);pointer-events:none}
+.top .wrap{position:relative;z-index:1}
+.eyebrow{font-size:10px;letter-spacing:.19em;font-weight:800}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;letter-spacing:-.015em}
+h1{font-size:clamp(34px,6vw,52px);font-weight:600;max-width:700px}
+h2{font-size:clamp(25px,4vw,31px)}
+h3{font-size:22px}
+.top> .wrap>p{font-size:14px;letter-spacing:.035em}
+.hero{display:flex;align-items:center;gap:20px;margin-top:18px;padding:15px 18px;max-width:560px;border:1px solid color-mix(in srgb,var(--gold) 24%,var(--line));border-radius:18px;background:color-mix(in srgb,var(--paper) 62%,transparent)}
+.hero .arabic{font-size:clamp(27px,4vw,34px)}
+.signature{border:0;margin-top:15px;padding-top:0;opacity:.86}
+.card{border-radius:var(--radius-card);padding:clamp(17px,2.5vw,24px);margin:15px 0;box-shadow:var(--shadow);transition:box-shadow .2s,border-color .2s}
+.card h2{margin-bottom:9px}
+.notice{border:1px solid color-mix(in srgb,var(--green) 9%,var(--line));border-radius:14px;padding:13px 15px;line-height:1.6}
+.tabs{top:0;gap:8px;padding:12px 0 14px;margin-inline:-2px;background:color-mix(in srgb,var(--cream) 92%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);scrollbar-width:thin;border-bottom:1px solid var(--line)}
+.tabs .btn{padding:9px 15px;border:1px solid transparent;background:color-mix(in srgb,var(--paper) 80%,var(--sage));font-size:13px;transition:background .18s,transform .18s,border-color .18s}
+.tabs .btn:hover{transform:translateY(-1px);border-color:var(--line)}
+.tabs .btn.active{background:var(--green);color:white;box-shadow:0 5px 14px color-mix(in srgb,var(--green) 22%,transparent)}
+.btn{border:1px solid transparent;border-radius:12px;padding:11px 16px;transition:transform .16s,box-shadow .16s,background .16s}
+.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 5px 14px rgba(36,55,47,.09)}
+.btn:active:not(:disabled){transform:translateY(0)}
+.btn.primary{background:var(--green);box-shadow:0 5px 14px color-mix(in srgb,var(--green) 18%,transparent)}
+.btn.ghost{border-color:var(--line)}
+.btn.small{border-radius:10px}
+:where(button,input,select,textarea,a):focus-visible{outline:3px solid color-mix(in srgb,var(--gold) 72%,white);outline-offset:3px}
+.grid{gap:12px}
+.stat{border:1px solid color-mix(in srgb,var(--green) 8%,var(--line));border-radius:17px;padding:15px;background:linear-gradient(145deg,color-mix(in srgb,var(--sage) 88%,var(--paper)),var(--sage))}
+.stat strong{font-family:"Cormorant Garamond",Georgia,serif;font-size:32px;line-height:1.1;margin-bottom:4px}
+input,select,textarea{border-radius:12px;padding:12px 14px;transition:border-color .16s,box-shadow .16s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 12%,transparent)}
+.surah-item,.category,.theme-option{border-radius:16px;transition:transform .16s,border-color .16s,box-shadow .16s}
+.surah-item:hover,.category:hover,.theme-option:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--green) 35%,var(--line));box-shadow:0 7px 18px rgba(36,55,47,.06)}
+.surah-num{border-radius:11px}
+.ayah{padding:22px 4px}
+.ayah .arabic{font-size:clamp(27px,4vw,34px);line-height:2.15;padding:12px 0}
+.translation{font-size:15px;line-height:1.8}
+.dua-card,.salah-dua{border-radius:18px;padding:18px;background:var(--paper);box-shadow:0 5px 18px rgba(36,55,47,.035)}
+.dua-card .arabic,.salah-dua .arabic{line-height:2.2;padding:7px 0}
+.name-card{border-radius:16px;padding:15px}
+.name-card .arabic{font-size:28px;padding:4px 0 8px}
+.pill{padding:5px 10px;letter-spacing:.025em}
+.progress{height:10px;border-radius:30px}
+.progress span{border-radius:30px;transition:width .25s}
+.checkrow{padding:13px 2px}
+.checkrow input{width:21px;height:21px}
+.qibla-layout{padding:8px 0}
+.compass{border-width:9px}
+.footer{padding:30px 0 42px;line-height:1.8}
+.searchbar{top:65px;padding:8px 0;background:color-mix(in srgb,var(--cream) 94%,transparent);backdrop-filter:blur(12px)}
+@media(min-width:700px){
+ .top{padding-block:42px 30px}
+ .page{padding-top:8px}
+ #home{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+ #home>.card{margin:0}
+ #home>.card:first-child{grid-column:1/-1}
+ #home>.card:nth-child(2){min-height:100%}
+}
+@media(max-width:520px){
+ .top{padding-top:25px}
+ .top:after{font-size:150px;right:-15px;top:-18px}
+ .hero{align-items:flex-start;flex-direction:column;gap:4px}
+ .tabs{margin-inline:-16px;padding-inline:16px;top:0}
+ .card{border-radius:19px}
+ .grid{gap:9px}
+ .stat{padding:12px}
+ .stat strong{font-size:28px}
+ .ayah-tools{gap:6px}
+ .ayah-tools .btn{font-size:12px;padding:7px 9px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 
 </style>
 </head>
